@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
+    [SerializeField] private int userSpeed;
 
     private float horizontalInput;
     private float verticalInput;
@@ -11,21 +12,18 @@ public class Player : MonoBehaviour
     private Rigidbody rigidbodyComponent;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         rigidbodyComponent = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
         jumpInput = Input.GetAxis("Jump");
     }
 
-    // FixedUpdate is called once every physics update
     private void FixedUpdate() {
-        rigidbodyComponent.velocity = new Vector3(horizontalInput, 0, verticalInput);
+        rigidbodyComponent.velocity = new Vector3(horizontalInput * userSpeed, 0, verticalInput * userSpeed);
     }
 }

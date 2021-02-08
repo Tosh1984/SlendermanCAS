@@ -1,5 +1,5 @@
 # SlendermanCAS
-SlendermanCAS is Slenderman knockoff made with Unity in VR for CS 161 machine problem
+SlendermanCAS is a Slenderman knockoff made with Unity in VR for CS 161 machine problem
 
 ## Prerequisites
 1. Unity 2019.4
