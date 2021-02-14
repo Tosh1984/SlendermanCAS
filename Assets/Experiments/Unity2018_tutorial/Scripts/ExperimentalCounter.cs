@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class ExperimentalCounter : MonoBehaviour
 {
     private Text pagesCollected;
-    private PlayerController player;
+    private ExperimentalPlayerController player;
     private XRCardboardController cardboardController;
 
     // Start is called before the first frame update
     void Start()
     {
         pagesCollected = GetComponent<Text>();
-        player = GetComponentInParent<PlayerController>();
+        player = GetComponentInParent<ExperimentalPlayerController>();
         cardboardController = XRCardboardController.Instance;
     }
 

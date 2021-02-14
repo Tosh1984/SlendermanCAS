@@ -13,12 +13,12 @@ public class XRCardboardController : MonoBehaviour
     public bool makeAllButtonsClickable = true;
     public bool raycastEveryUpdate = true;
     public LayerMask interactablesLayers = -1;
+    public float maxInteractionDistance = 10f;
 
     public UnityEvent OnTriggerPressed = new UnityEvent();
     
     private Camera camera;
     private GameObject _gazedAtObject = null;
-    private const float MAX_DISTANCE = 10;
 
     public static XRCardboardController Instance { get; private set; }
 
@@ -120,7 +120,7 @@ public class XRCardboardController : MonoBehaviour
     private void _CastForInteractables()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, MAX_DISTANCE, interactablesLayers))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, maxInteractionDistance, interactablesLayers))
         {
             // GameObject detected in front of the camera.
             if (_gazedAtObject != hit.transform.gameObject)
