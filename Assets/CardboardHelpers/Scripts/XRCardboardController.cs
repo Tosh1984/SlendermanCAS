@@ -143,15 +143,15 @@ public class XRCardboardController : MonoBehaviour
     public bool IsTriggerPressed()
     {
 #if UNITY_EDITOR
-        return Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space);
+        return Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E);
 #else
-        return (Api.IsTriggerPressed || Input.GetMouseButtonDown(0)) || Input.GetKeyDown(KeyCode.Space);
+        return (Api.IsTriggerPressed || Input.GetMouseButtonDown(0)) || Input.GetKeyDown(KeyCode.E);
 #endif
     }
 
     // MARK: Added functionalities
     private bool isButtonDetected = false;
-    public void setButtonDetectedAs(bool val) {
+    public void SetButtonDetectedAs(bool val) {
         isButtonDetected = val;
     }
 

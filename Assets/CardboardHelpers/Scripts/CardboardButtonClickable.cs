@@ -22,7 +22,7 @@ public class CardboardButtonClickable : MonoBehaviour, IPointerEnterHandler, IPo
     {
         Debug.Log("**** OnPointerEnter " + gameObject.name);
         XRCardboardController.Instance.OnTriggerPressed.AddListener(OnClick);
-        XRCardboardController.Instance.setButtonDetectedAs(true);
+        XRCardboardController.Instance.SetButtonDetectedAs(true);
     }
 
 
@@ -30,7 +30,7 @@ public class CardboardButtonClickable : MonoBehaviour, IPointerEnterHandler, IPo
     {
         Debug.Log("**** OnPointerExit " + gameObject.name);
         XRCardboardController.Instance.OnTriggerPressed.RemoveListener(OnClick);
-        XRCardboardController.Instance.setButtonDetectedAs(false);
+        XRCardboardController.Instance.SetButtonDetectedAs(false);
     }
 
     private void OnClick()

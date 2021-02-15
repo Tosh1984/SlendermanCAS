@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
 public class ExperimentalReticleAnimation : MonoBehaviour {
     Animator anim;
@@ -18,10 +13,6 @@ public class ExperimentalReticleAnimation : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        UpdateInteraction();
-    }
-
-    private void UpdateInteraction() {
         if (cardboardController.IsInteractableDetected()) {
             if (cardboardController.IsTriggerPressed()) {
                 anim.SetBool("isActivated", false);

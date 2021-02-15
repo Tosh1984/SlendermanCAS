@@ -974,10 +974,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectedPages: 0
   pagesToCollect: 8
-  playerSpeed: 5
+  walkSpeed: 5
+  runSpeed: 10
   viewDistance: 10
   reachDistance: 10
   gravity: 9.8
+  isFlashlightOn: 0
 --- !u!1 &6471401702758112648
 GameObject:
   m_ObjectHideFlags: 0
