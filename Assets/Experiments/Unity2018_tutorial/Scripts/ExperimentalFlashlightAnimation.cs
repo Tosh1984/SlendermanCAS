@@ -19,6 +19,10 @@ public class ExperimentalFlashlightAnimation : MonoBehaviour
         anim = GetComponent<Animator>();
         playerController = GetComponentInParent<ExperimentalPlayerController>();
         audioSource = GetComponent<AudioSource>();
+
+        if (playerController.isFlashlightOn) {
+            anim.SetBool("isOn", true);
+        }
     }
 
     // Update is called once per frame
