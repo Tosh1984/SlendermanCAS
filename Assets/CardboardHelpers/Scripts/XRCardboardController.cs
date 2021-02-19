@@ -8,6 +8,10 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 // XR Cardboard controller and interactor
+/// <summary>
+/// Modified version of the controller.
+/// Added helper functions explicitly track the state of the gazed object.
+/// </summary>
 public class XRCardboardController : MonoBehaviour
 {
     public bool makeAllButtonsClickable = true;
@@ -139,13 +143,12 @@ public class XRCardboardController : MonoBehaviour
             _gazedAtObject = null;
         }
     }
-    
-    public bool IsTriggerPressed()
-    {
+
+    public bool IsTriggerPressed() {
 #if UNITY_EDITOR
         return Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E);
 #else
-        return (Api.IsTriggerPressed || Input.GetMouseButtonDown(0)) || Input.GetKeyDown(KeyCode.E);
+            return (Api.IsTriggerPressed || Input.GetMouseButtonDown(0)) || Input.GetKeyDown(KeyCode.E);
 #endif
     }
 
@@ -163,16 +166,22 @@ public class XRCardboardController : MonoBehaviour
         return (_gazedAtObject != null) && _gazedAtObject.CompareTag("Collectable");
     }
 
-    public bool GetCollectable() {
-        if (IsCollectableDetected()) {
+    public bool IsGettingCollectable() {
+        if (IsTriggerPressed() && IsCollectableDetected()) {
+            return true;
+        }
+        return false;
+    }
+
+    public void GetCollectable() {
+        if (IsGettingCollectable()) {
             _gazedAtObject?.SendMessage("PointerExit");
             Destroy(_gazedAtObject);
             _gazedAtObject = null;
-
-            return true;
         }
-
-        return false;
     }
-    
+
+    public GameObject GetGazedObject() {
+        return _gazedAtObject;
+    }
 }
