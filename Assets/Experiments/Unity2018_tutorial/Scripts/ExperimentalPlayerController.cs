@@ -6,37 +6,41 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class ExperimentalPlayerController : MonoBehaviour
 {
-    public int collectedPages = 0;
-    public int pagesToCollect = 8;
     public float walkSpeed = 5f;
     public float runSpeed = 10f;
     public float viewDistance = 10f;
-    public float reachDistance = 10f;
+    public float reachDistance = 2.5f;
+    //public bool isFlashlightOn = false;
     [SerializeField] private float gravity = 9.8f;
-    public bool isFlashlightOn = false;
 
     private CharacterController controller;
-    private XRCardboardController cardboardController;
+    private ExperimentalGameCardboardController cardboardController;
 
-    // Start is called before the first frame update
-    void Start()
+    //private void OnEnable() {
+    //    ExperimentalGameEventManager.onGettingCollectable += PlayerCollectPage;
+    //}
+
+    private void Start()
     {
         controller = GetComponent<CharacterController>();
-        cardboardController = XRCardboardController.Instance;
+        cardboardController = ExperimentalGameCardboardController.Instance;
         cardboardController.maxInteractionDistance = reachDistance;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         PlayerMovement();
-        PlayerInteraction();
+        PlayerCollectPage();
     }
+
+    //private void OnDisable() {
+    //    ExperimentalGameEventManager.onGettingCollectable -= PlayerCollectPage;
+    //}
 
     private void PlayerMovement() {
 #if UNITY_EDITOR
         Camera mainCam = Camera.main;
-        float maxAngle = 60f;
+        float maxAngle = 85f;
         float mouseX = (Input.mousePosition.x / Screen.width) - 0.5f;
         float mouseY = (Input.mousePosition.y / Screen.height) - 0.5f;
         
@@ -58,18 +62,10 @@ public class ExperimentalPlayerController : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
-    private void PlayerInteraction() {
-        // Interact
-        if (cardboardController.IsTriggerPressed()) {
-            // Collectables
-            if (cardboardController.GetCollectable()) {
-                collectedPages += 1;
-            }
-        }
-
-        // Flashlight
-        if (IsFlashlightTriggered()) {
-            isFlashlightOn = !isFlashlightOn;
+    private void PlayerCollectPage() {
+        if (cardboardController.IsGettingCollectable()) {
+            ExperimentalGameEventHandler.Instance.pagesCollected += 1;
+            cardboardController.GetCollectable();
         }
     }
 
@@ -78,7 +74,7 @@ public class ExperimentalPlayerController : MonoBehaviour
             (Input.GetButton("Horizontal") || Input.GetButton("Vertical"));
     }
 
-    public bool IsFlashlightTriggered() {
-        return Input.GetKeyDown(KeyCode.F);
-    }
+    //private void IsFlashlightTriggered() {
+    //    isFlashlightOn = !isFlashlightOn;
+    //}
 }

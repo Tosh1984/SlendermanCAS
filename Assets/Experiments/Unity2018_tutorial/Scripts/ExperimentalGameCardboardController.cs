@@ -116,12 +116,10 @@ public class ExperimentalGameCardboardController : XRCardboardController {
 #endif
     }
 
-
     private bool isButtonDetected = false;
     public void SetButtonDetectedAs(bool val) {
         isButtonDetected = val;
     }
-
 
     public bool IsInteractableDetected() {
         return (_gazedAtObject != null) || isButtonDetected;
@@ -131,16 +129,23 @@ public class ExperimentalGameCardboardController : XRCardboardController {
         return (_gazedAtObject != null) && _gazedAtObject.CompareTag("Collectable");
     }
 
-    public bool GetCollectable() {
-        if (IsCollectableDetected()) {
+    public bool IsGettingCollectable() {
+        if (IsTriggerPressed() && IsCollectableDetected()) {
+            return true;
+        }
+        return false;
+    }
+
+    public void GetCollectable() {
+        if (IsGettingCollectable()) {
+            Debug.Log("Collected object: " + GetGazedObject().name);
+
             _gazedAtObject?.SendMessage("PointerExit");
             Destroy(_gazedAtObject);
             _gazedAtObject = null;
 
-            return true;
+            Debug.Log("*** SUCCESSFULLY DESTROYED");
         }
-
-        return false;
     }
 
     public GameObject GetGazedObject() {

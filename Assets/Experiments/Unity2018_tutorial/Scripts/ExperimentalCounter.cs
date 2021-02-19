@@ -9,27 +9,31 @@ public class ExperimentalCounter : MonoBehaviour
     [SerializeField] private float fadeOutTime = 3f;
 
     private Text pages;
-    private ExperimentalGameManager gameManager;
-    private XRCardboardController cardboardController;
+    private ExperimentalGameEventHandler gameEventHandler;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable() {
+        ExperimentalGameEventManager.onGettingCollectable += FlashCounter;
+    }
+
+    private void Start()
     {
         pages = GetComponent<Text>();
-        gameManager = GetComponentInParent<ExperimentalGameManager>();
-        cardboardController = XRCardboardController.Instance;
+        gameEventHandler = ExperimentalGameEventHandler.Instance;
 
-        pages.text = "Pages: " + gameManager.pagesCollected + "/" + gameManager.pagesToCollect;
+        pages.text = "Pages: " + gameEventHandler.pagesCollected + "/" + gameEventHandler.pagesToCollect;
         pages.CrossFadeAlpha(0, fadeOutTime, false);
     }
 
-    // Update is called once per frame
-    void Update() {
-        pages.text = "Pages: " + gameManager.pagesCollected + "/" + gameManager.pagesToCollect;
+    private void Update() {
+        pages.text = "Pages: " + gameEventHandler.pagesCollected + "/" + gameEventHandler.pagesToCollect;
+    }
 
-        if (cardboardController.IsTriggerPressed() && cardboardController.IsCollectableDetected()) {
-            pages.CrossFadeAlpha(1, fadeInTime, false);
-            pages.CrossFadeAlpha(0, fadeOutTime, false);
-        }
+    private void OnDisable() {
+        ExperimentalGameEventManager.onGettingCollectable -= FlashCounter;
+    }
+
+    void FlashCounter() {
+        pages.CrossFadeAlpha(1, fadeInTime, false);
+        pages.CrossFadeAlpha(0, fadeOutTime, false);
     }
 }

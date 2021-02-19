@@ -10,8 +10,8 @@ public class CardboardInteractable : MonoBehaviour
     public UnityEvent onSelectEnter = new UnityEvent();
     public UnityEvent onSelectExit = new UnityEvent();
 
-    private bool _isHovering;
-    private bool _isSelecting;
+    protected bool _isHovering;
+    protected bool _isSelecting;
 
     public void PointerEnter()
     {
@@ -25,7 +25,7 @@ public class CardboardInteractable : MonoBehaviour
         onHoverExit.Invoke();
     }
 
-    private void Update()
+    protected void Update()
     {
         if (XRCardboardController.Instance.IsTriggerPressed())
         {
