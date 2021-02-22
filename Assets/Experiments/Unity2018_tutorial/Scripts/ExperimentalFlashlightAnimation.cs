@@ -17,10 +17,11 @@ public class ExperimentalFlashlightAnimation : MonoBehaviour
         ExperimentalGameEventManager.onFlashlightToggled += ToggleFlashlight;
     }
 
-    // Start is called before the first frame update
     private void Start() {
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+
+        GetComponentInChildren<Light>().range = ExperimentalGameEventHandler.Instance.player.viewDistance;
 
         if (isFlashlightOn) {
             anim.SetBool("isOn", true);
