@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+// todo: rename to ExperimentalGrabPaperSound
 public class ExperimentalPaperSound : MonoBehaviour
 {
     [Range(0.0f, 1.0f)]
@@ -14,7 +15,7 @@ public class ExperimentalPaperSound : MonoBehaviour
     System.Random rnd = new System.Random();
 
     private void OnEnable() {
-        ExperimentalGameEventManager.onGettingCollectable += PlaySoundEffect;
+        ExperimentalGameEventManager.onGotCollectable += PlaySoundEffect;
     }
 
     private void Start() {
@@ -27,7 +28,7 @@ public class ExperimentalPaperSound : MonoBehaviour
     }
 
     private void OnDisable() {
-        ExperimentalGameEventManager.onGettingCollectable -= PlaySoundEffect;
+        ExperimentalGameEventManager.onGotCollectable -= PlaySoundEffect;
     }
 
     public void PlaySoundEffect() {
