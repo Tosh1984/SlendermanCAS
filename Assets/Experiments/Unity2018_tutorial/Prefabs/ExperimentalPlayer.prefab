@@ -972,14 +972,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa30b048124924af0a525c07d30e9e10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectedPages: 0
-  pagesToCollect: 8
   walkSpeed: 5
   runSpeed: 10
+  allowedRunningSeconds: 60
   viewDistance: 10
+  viewAngle: 30
   reachDistance: 10
+  doesMovementFollowCamera: 0
   gravity: 9.8
-  isFlashlightOn: 0
 --- !u!1 &6471401702758112648
 GameObject:
   m_ObjectHideFlags: 0
@@ -1373,3 +1373,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d34471a48e6435d981e675fd856ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeInTime: 0
+  fadeOutTime: 4

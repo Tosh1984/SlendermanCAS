@@ -1,77 +1,84 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Experimental;
 
-/// <summary>
-/// This script manages and tracks the game events, including...
-/// - 
-/// Note: this is not for managing player inputs/triggers. See PlayerController.
-/// </summary>
-public class ExperimentalGameEventHandler : MonoBehaviour
-{
-    public static ExperimentalGameEventHandler Instance { get; private set; }
+namespace Experimental {
 
-    public int pagesCollected = 0;
-    public int pagesToCollect = 8;
-    public float maxTimeGazingSlender = 5f;
-    
-    // for difficulty settings
-    public bool isTimed = false;
-    public float gameTimer = 1800; // 30 minutes
-    public float timeElapsed;
-    // todo: apply this?
-    public bool isPageSpawnedRandomly = false;
+    /// <summary>
+    /// This script manages and tracks the game events, including...
+    /// - 
+    /// Note: this is not for managing player inputs/triggers. See PlayerController.
+    /// </summary>
+    public class ExperimentalGameEventHandler : MonoBehaviour {
+        public static ExperimentalGameEventHandler Instance { get; private set; }
 
-    public GameObject slenderman;
-    public ExperimentalPlayerController player;
+        public int pagesCollected = 0;
+        public int pagesToCollect = 8;
+        public float maxTimeGazingSlender = 5f;
 
-    private float timeGazedSlender = 0f;
+        // for difficulty settings
+        public bool isTimed = false;
+        public float gameTimer = 1800; // 30 minutes
+        public float timeElapsed;
+        // todo: apply this?
+        public bool isPageSpawnedRandomly = false;
 
-    private void Awake() {
-        if (Instance != null) {
-            Debug.LogError("Only one instance of singleton allowed");
-        }
-        Instance = this;
-    }
+        public GameObject slenderman;
+        public ExperimentalPlayerController player;
+        public GameObject WorldLighting;
 
-    private void OnDestroy() {
-        if (Instance == this) { Instance = null; }
-    }
+        private float timeGazedSlender = 0f;
 
-    private void OnEnable() {
-        ExperimentalGameEventManager.onGettingCollectable += PageCollected;
-        ExperimentalGameEventManager.onPlayerViewEntered += GazingSlenderman;
-    }
-
-    private void Start() {  }
-
-    private void Update() {
-        // EVENT: onGameWon
-        if (pagesCollected == pagesToCollect) {
-            ExperimentalGameEventManager.InvokeGameWon();
-        }
-
-        // EVENT: onGameLost
-        if (timeGazedSlender >= maxTimeGazingSlender) {
-            ExperimentalGameEventManager.InvokeGameLost();
-        } else if (isTimed) {
-            if (timeElapsed >= gameTimer) {
-                ExperimentalGameEventManager.InvokeGameLost();
+        private void Awake() {
+            if (Instance != null) {
+                Debug.LogError("Only one instance of singleton allowed");
             }
-            timeElapsed += Time.deltaTime;
+            Instance = this;
         }
-    }
 
-    private void OnDisable() {
-        ExperimentalGameEventManager.onGettingCollectable -= PageCollected;
-        ExperimentalGameEventManager.onPlayerViewEntered -= GazingSlenderman;
-    }
+        private void OnDestroy() {
+            if (Instance == this) { Instance = null; }
+        }
 
-    private void PageCollected() {
-        pagesCollected += 1;
-    }
+        private void OnEnable() {
+            ExperimentalGameEventManager.onGettingCollectable += PageCollected;
+            ExperimentalGameEventManager.onPlayerViewEntered += GazingSlenderman;
+        }
 
-    private void GazingSlenderman() {
-        timeGazedSlender += Time.deltaTime;
+        private void Start() { }
+
+        private void Update() {
+            // EVENT: onGameWon
+            if (pagesCollected == pagesToCollect) {
+                ExperimentalGameEventManager.InvokeGameWon();
+            }
+
+            // EVENT: onGameLost
+            if (timeGazedSlender >= maxTimeGazingSlender) {
+                ExperimentalGameEventManager.InvokeGameLost();
+            } else if (isTimed) {
+                if (timeElapsed >= gameTimer) {
+                    ExperimentalGameEventManager.InvokeGameLost();
+                }
+                timeElapsed += Time.deltaTime;
+            }
+        }
+
+        private void OnDisable() {
+            ExperimentalGameEventManager.onGettingCollectable -= PageCollected;
+            ExperimentalGameEventManager.onPlayerViewEntered -= GazingSlenderman;
+        }
+
+        private void PageCollected() {
+            pagesCollected += 1;
+        }
+
+        private void GazingSlenderman() {
+            if (!ExperimentalPauseAndShowMenu.Instance.isPaused) {
+                timeGazedSlender += Time.deltaTime;
+                Debug.Log("***GAZING");
+            }
+        }
     }
 }
