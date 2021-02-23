@@ -19,12 +19,16 @@ public class GameEventHandler : MonoBehaviour
     public bool isTimed = false;
     public float gameTimer = 1800; // 30 minutes
     public float timeElapsed;
-    // todo: apply this?
-    public bool isPageSpawnedRandomly = false;
 
     public GameObject slenderman;
     public PlayerController player;
     public GameObject WorldLighting;
+
+    [HideInInspector]
+    public bool isGameEnded = false;
+
+    //public get for isGameEnded
+    //    private set for isGameEnded
 
     private float timeGazedSlender = 0f;
 
@@ -49,14 +53,17 @@ public class GameEventHandler : MonoBehaviour
     private void Update() {
         // EVENT: onGameWon
         if (pagesCollected == pagesToCollect) {
+            isGameEnded = true;
             GameEventManager.InvokeGameWon();
         }
 
         // EVENT: onGameLost
         if (timeGazedSlender >= maxTimeGazingSlender) {
+            isGameEnded = true;
             GameEventManager.InvokeGameLost();
         } else if (isTimed) {
             if (timeElapsed >= gameTimer) {
+                isGameEnded = true;
                 GameEventManager.InvokeGameLost();
             }
             timeElapsed += Time.deltaTime;

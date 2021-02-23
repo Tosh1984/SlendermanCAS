@@ -33,17 +33,17 @@ public class GameEndScreen : MonoBehaviour
         title.text = "You escaped";
         GetComponent<Canvas>().enabled = true;
 
-        worldLight.GetComponent<Animator>().SetTrigger("Won");
+        //worldLight.GetComponent<Animator>().SetTrigger("Won");
     }
 
     private void GameLost() {
         Time.timeScale = 0;
-        AudioListener.pause = true;
+        //AudioListener.pause = true;
 
         title.text = "";
         GetComponent<Canvas>().enabled = true;
 
-        worldLight.GetComponent<Animator>().SetTrigger("Won");
+        //worldLight.GetComponent<Animator>().SetTrigger("Won");
 
         // play a slenderman animation
         // analog glitch at 0.3 scan. 0.1 hori shake

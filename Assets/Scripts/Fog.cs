@@ -21,6 +21,7 @@ public class Fog : MonoBehaviour
     private void Start()
     {
         RenderSettings.fog = true;
+        RenderSettings.fogColor = new Color(0, 0, 0);
         RenderSettings.fogMode = FogMode.ExponentialSquared;
         RenderSettings.fogDensity = initialFogDensity;
 
