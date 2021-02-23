@@ -24,7 +24,6 @@ public class PauseAndShowMenu : MonoBehaviour {
     private void Start() {
         worldLight = GameEventHandler.Instance.WorldLighting.GetComponent<Light>();
         initialLighting = worldLight.intensity;
-        worldLight.intensity = 0f;
         GetComponent<Canvas>().enabled = false;
     }
 
@@ -39,8 +38,6 @@ public class PauseAndShowMenu : MonoBehaviour {
             AudioListener.pause = true;
 
             worldLight.intensity = 0f;
-
-            Debug.Log("light: " + worldLight.name + " : " + worldLight.intensity);
 
             GetComponent<Canvas>().enabled = true;
         } else {

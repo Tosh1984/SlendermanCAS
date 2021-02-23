@@ -35,7 +35,7 @@ public class SlendermanSpawnAndMovement : MonoBehaviour {
     }
 
     private void Update() {
-        slendermanLocation.LookAt(new Vector3(playerLocation.position.x, 0, playerLocation.position.z));
+        slendermanLocation.LookAt(new Vector3(playerLocation.position.x, slendermanLocation.position.y, playerLocation.position.z));
     }
 
     private void OnDisable() {
@@ -70,7 +70,7 @@ public class SlendermanSpawnAndMovement : MonoBehaviour {
         Ray ray = new Ray(raySpawnPosition, Vector3.down);
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity)) {
-            if (hit.collider != null) {
+            if (hit.collider != null && hit.transform.CompareTag("Ground")) {
                 slendermanLocation.position = hit.point;
             }
         }

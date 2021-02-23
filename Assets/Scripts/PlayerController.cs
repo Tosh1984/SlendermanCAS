@@ -38,12 +38,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
-        // todo: disable pausing when game finished
-
-
         // EVENT: onGamePaused
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameManager.isGameEnded) {
             PauseAndShowMenu.Instance.Pause();
         }
 

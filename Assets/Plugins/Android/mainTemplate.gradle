@@ -9,6 +9,10 @@ dependencies {
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.google.android.gms:play-services-vision:15.0.2'
     implementation 'com.google.protobuf:protobuf-lite:3.0.0'
+<<<<<<< HEAD
+=======
+
+>>>>>>> f6a934c3fe324204b796e82c63e0f64bacf2afa5
 **DEPS**}
 
 android {
