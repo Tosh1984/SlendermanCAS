@@ -35,7 +35,7 @@ public class SlendermanSpawnAndMovement : MonoBehaviour {
     }
 
     private void Update() {
-        slendermanLocation.LookAt(new Vector3(playerLocation.position.x, 0, playerLocation.position.z));
+        //slendermanLocation.LookAt(new Vector3(playerLocation.position.x, 0, playerLocation.position.z));
     }
 
     private void OnDisable() {
