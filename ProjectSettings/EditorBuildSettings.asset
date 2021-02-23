@@ -5,7 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Forest.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Experiments/Unity2018_tutorial/Scenes/TestScene.unity
+    guid: 9f0a2d17d06864e41bc72741f949fe6f
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: f313633391c4f409585f388e68740747,
+      type: 2}
