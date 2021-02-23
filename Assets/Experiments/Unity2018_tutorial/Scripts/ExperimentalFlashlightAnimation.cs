@@ -1,46 +1,65 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Experimental;
 
-public class ExperimentalFlashlightAnimation : MonoBehaviour
-{
-    Animator anim;
+namespace Experimental {
 
-    [Range(0.0f, 1.0f)]
-    public float clickVolume = 0.7f;
-    public bool isFlashlightOn = false;
+    public class ExperimentalFlashlightAnimation : MonoBehaviour {
+        Animator anim;
 
-    [SerializeField] private AudioClip clickOn;
-    [SerializeField] private AudioClip clickOff;
-    AudioSource audioSource;
+        [Range(0.0f, 1.0f)]
+        public float clickVolume = 0.7f;
+        public bool isFlashlightOn = false;
 
-    private void OnEnable() {
-        ExperimentalGameEventManager.onFlashlightToggled += ToggleFlashlight;
-    }
+        [SerializeField] private AudioClip clickOn;
+        [SerializeField] private AudioClip clickOff;
+        AudioSource audioSource;
+        private Transform whiteLight;
 
-    private void Start() {
-        anim = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
-
-        GetComponentInChildren<Light>().range = ExperimentalGameEventHandler.Instance.player.viewDistance;
-
-        if (isFlashlightOn) {
-            anim.SetBool("isOn", true);
+        private void OnEnable() {
+            ExperimentalGameEventManager.onFlashlightToggled += ToggleFlashlight;
+            ExperimentalGameEventManager.onGamePaused += OnPaused;
+            ExperimentalGameEventManager.onGameWon += OnGameResult;
+            ExperimentalGameEventManager.onGameLost += OnGameResult;
         }
-    }
 
-    private void OnDisable() {
-        ExperimentalGameEventManager.onFlashlightToggled -= ToggleFlashlight;
-    }
+        private void Start() {
+            anim = GetComponent<Animator>();
+            audioSource = GetComponent<AudioSource>();
 
-    private void ToggleFlashlight() {
-        isFlashlightOn = !isFlashlightOn;
+            GetComponentInChildren<Light>().range = ExperimentalGameEventHandler.Instance.player.viewDistance;
+            whiteLight = GameObject.Find("WhiteLight").transform;
 
-        if (isFlashlightOn) {
-            anim.SetBool("isOn", true);
-            audioSource.PlayOneShot(clickOn, clickVolume);
-        } else {
-            anim.SetBool("isOn", false);
-            audioSource.PlayOneShot(clickOff, clickVolume);
+            if (isFlashlightOn) {
+                anim.SetBool("isOn", true);
+            }
+        }
+
+        private void OnDisable() {
+            ExperimentalGameEventManager.onFlashlightToggled -= ToggleFlashlight;
+            ExperimentalGameEventManager.onGamePaused -= OnPaused;
+            ExperimentalGameEventManager.onGameWon -= OnGameResult;
+            ExperimentalGameEventManager.onGameLost -= OnGameResult;
+        }
+
+        private void ToggleFlashlight() {
+            isFlashlightOn = !isFlashlightOn;
+
+            if (isFlashlightOn) {
+                anim.SetBool("isOn", true);
+                audioSource.PlayOneShot(clickOn, clickVolume);
+            } else {
+                anim.SetBool("isOn", false);
+                audioSource.PlayOneShot(clickOff, clickVolume);
+            }
+        }
+
+        private void OnPaused() {
+            whiteLight.gameObject.SetActive(!ExperimentalPauseAndShowMenu.Instance.isPaused);
+        }
+
+        private void OnGameResult() {
+            whiteLight.gameObject.SetActive(false);
         }
     }
 }

@@ -1,22 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Experimental;
 
-public class ExperimentalDoor : MonoBehaviour
-{
-    public Transform door;
+namespace Experimental {
 
-    private void Start() {
-        door = GetComponent<Transform>();
-    }
+    public class ExperimentalDoor : MonoBehaviour
+    {
+        public Transform door;
 
-    public void Hovering(bool enable) {
+        private void Start() {
+            door = GetComponent<Transform>();
+        }
+
+        public void Hovering(bool enable) {
         
-    }
+        }
 
-    public void Selecting(bool enable) {
-        if (enable) {
-            door.transform.position += new Vector3(1f, 1f, 1f);
+        public void Selecting(bool enable) {
+            if (enable) {
+                door.transform.position += new Vector3(1f, 1f, 1f);
+            }
         }
     }
 }

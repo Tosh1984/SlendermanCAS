@@ -1,31 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Experimental;
 
-public class ExperimentalHighlighter : MonoBehaviour {
-    public Color hoverColor;
-    public Color selectColor;
+namespace Experimental {
 
-    private Color defaultColor;
-    private Renderer renderer;
+    public class ExperimentalHighlighter : MonoBehaviour {
+        public Color hoverColor;
+        public Color selectColor;
 
-    private void Start() {
-        renderer = GetComponent<Renderer>();
-        defaultColor = renderer.material.color;
-    }
+        private Color defaultColor;
+        private Renderer renderer;
 
-    public void Hovering(bool enable) {
-        renderer.material.color = (enable ? hoverColor : defaultColor);
-    }
+        private void Start() {
+            renderer = GetComponent<Renderer>();
+            defaultColor = renderer.material.color;
+        }
 
-    public void Selecting(bool enable) {
-        renderer.material.color = (enable ? selectColor : defaultColor);
-    }
+        public void Hovering(bool enable) {
+            renderer.material.color = (enable ? hoverColor : defaultColor);
+        }
 
-    private bool toggleColor = false;
-    public void ToggleSelecting() {
-        toggleColor = !toggleColor;
-        Selecting(toggleColor);
-        Debug.Log("Toggle color: " + toggleColor);
+        public void Selecting(bool enable) {
+            renderer.material.color = (enable ? selectColor : defaultColor);
+        }
+
+        private bool toggleColor = false;
+        public void ToggleSelecting() {
+            toggleColor = !toggleColor;
+            Selecting(toggleColor);
+            Debug.Log("Toggle color: " + toggleColor);
+        }
     }
 }

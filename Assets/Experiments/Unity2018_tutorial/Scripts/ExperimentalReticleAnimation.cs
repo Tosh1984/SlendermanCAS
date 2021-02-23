@@ -1,24 +1,28 @@
 ﻿using UnityEngine;
+using Experimental;
 
-public class ExperimentalReticleAnimation : MonoBehaviour {
-    Animator anim;
-    XRCardboardController cardboardController;
+namespace Experimental {
 
-    private void Start() {
-        anim = GetComponent<Animator>();
+    public class ExperimentalReticleAnimation : MonoBehaviour {
+        Animator anim;
+        XRCardboardController cardboardController;
 
-        cardboardController = GetComponentInParent<XRCardboardController>();
-    }
+        private void Start() {
+            anim = GetComponent<Animator>();
 
-    private void Update() {
-        if (cardboardController.IsInteractableDetected()) {
-            if (cardboardController.IsTriggerPressed()) {
-                anim.SetBool("isActivated", false);
+            cardboardController = GetComponentInParent<XRCardboardController>();
+        }
+
+        private void Update() {
+            if (cardboardController.IsInteractableDetected()) {
+                if (cardboardController.IsTriggerPressed()) {
+                    anim.SetBool("isActivated", false);
+                } else {
+                    anim.SetBool("isActivated", true);
+                }
             } else {
-                anim.SetBool("isActivated", true);
+                anim.SetBool("isActivated", false);
             }
-        } else {
-            anim.SetBool("isActivated", false);
         }
     }
 }
