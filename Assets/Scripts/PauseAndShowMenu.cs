@@ -9,6 +9,7 @@ public class PauseAndShowMenu : MonoBehaviour {
 
     Light worldLight;
     float initialLighting;
+    GameObject parentScreen;
 
     private void Awake() {
         if (Instance != null) {
@@ -24,11 +25,16 @@ public class PauseAndShowMenu : MonoBehaviour {
     private void Start() {
         worldLight = GameEventHandler.Instance.WorldLighting.GetComponent<Light>();
         initialLighting = worldLight.intensity;
+        parentScreen = GameObject.Find("Screens");
+
         GetComponent<Canvas>().enabled = false;
     }
 
     public void Pause() {
         isPaused = !isPaused;
+
+        // angle Screen canvas to where camera is facing when invoked
+        parentScreen.transform.rotation = Camera.main.transform.rotation;
 
         // EVENT: onGamePaused
         GameEventManager.InvokeGamePaused();

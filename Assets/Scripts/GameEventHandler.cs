@@ -51,23 +51,28 @@ public class GameEventHandler : MonoBehaviour
     private void Start() {  }
 
     private void Update() {
-        // EVENT: onGameWon
-        if (pagesCollected == pagesToCollect) {
-            isGameEnded = true;
-            GameEventManager.InvokeGameWon();
-        }
 
-        // EVENT: onGameLost
-        if (timeGazedSlender >= maxTimeGazingSlender) {
-            isGameEnded = true;
-            GameEventManager.InvokeGameLost();
-        } else if (isTimed) {
-            if (timeElapsed >= gameTimer) {
+        if (!isGameEnded) {
+            // EVENT: onGameWon
+            if (pagesCollected == pagesToCollect) {
+                isGameEnded = true;
+                GameEventManager.InvokeGameWon();
+            }
+
+            // EVENT: onGameLost
+            if (timeGazedSlender >= maxTimeGazingSlender) {
                 isGameEnded = true;
                 GameEventManager.InvokeGameLost();
+            } else if (isTimed) {
+                if (timeElapsed >= gameTimer) {
+                    isGameEnded = true;
+                    GameEventManager.InvokeGameLost();
+                }
+                timeElapsed += Time.deltaTime;
             }
-            timeElapsed += Time.deltaTime;
         }
+
+        
     }
 
     private void OnDisable() {

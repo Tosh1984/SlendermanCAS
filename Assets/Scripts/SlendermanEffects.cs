@@ -11,6 +11,7 @@ public class SlendermanEffects : MonoBehaviour
     private PlayerController playerController;
     private Transform mainCamera;
     private AudioSource playerAudioSource;
+    private GameEventHandler gameManager;
 
     private void OnEnable() {
         GameEventManager.onPlayerViewEntered += SlendermanGazed;
@@ -19,7 +20,7 @@ public class SlendermanEffects : MonoBehaviour
 
     private void Start()
     {
-        GameEventHandler gameManager = GameEventHandler.Instance;
+        gameManager = GameEventHandler.Instance;
 
         playerController = gameManager.player;
 
@@ -30,7 +31,9 @@ public class SlendermanEffects : MonoBehaviour
         GetComponent<AudioSource>().clip = audioStatic;
     }
 
-    private void Update() {  }
+    private void Update() {
+
+    }
 
     private void OnDisable() {
         GameEventManager.onPlayerViewEntered -= SlendermanGazed;
@@ -38,7 +41,6 @@ public class SlendermanEffects : MonoBehaviour
     }
 
     private void SlendermanGazed() {
-
         if (!anim.GetBool("isLooked")) {
             Shock();
         }

@@ -45,18 +45,21 @@ public class PlayerController : MonoBehaviour
 
         PlayerMovement();
 
-        if (PauseAndShowMenu.Instance.isPaused) { return; }
+        if (!gameManager.isGameEnded) {
 
-        // MARK: Pauseable actions below
-        CheckGazeOnSlenderman();
+            if (PauseAndShowMenu.Instance.isPaused) { return; }
 
-        if (cardboardController.IsGettingCollectable()) {
-            PlayerCollectPage();
-        }
+            // MARK: Pauseable actions below
+            CheckGazeOnSlenderman();
 
-        // EVENT: onFlashlightToggled
-        if (Input.GetKeyDown(KeyCode.F)) {
-            GameEventManager.InvokeFlashlightToggled();
+            if (cardboardController.IsGettingCollectable()) {
+                PlayerCollectPage();
+            }
+
+            // EVENT: onFlashlightToggled
+            if (Input.GetKeyDown(KeyCode.F)) {
+                GameEventManager.InvokeFlashlightToggled();
+            }
         }
     }
 
