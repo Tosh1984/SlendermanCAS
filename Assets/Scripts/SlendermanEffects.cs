@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Handles and plays the glitch effect with audio when gazing slenderman.
+/// Handles and plays the glitch animation with audio when gazing slenderman.
 /// Subscriptions:
 /// - onPlayerViewEntered
 /// - onNotPlayerViewEntered
+/// - onGameWon
+/// - onGameLost
 /// </summary>
 public class SlendermanEffects : MonoBehaviour
 {
@@ -39,9 +41,7 @@ public class SlendermanEffects : MonoBehaviour
         GetComponent<AudioSource>().clip = audioStatic;
     }
 
-    private void Update() {
-
-    }
+    private void Update() { }
 
     private void OnDisable() {
         GameEventManager.onPlayerViewEntered -= SlendermanGazed;

@@ -14,6 +14,7 @@ public class PauseAndShowMenu : MonoBehaviour {
 
     Light worldLight;
     float initialLighting;
+    Color initialBGColor;
     GameObject parentScreen;
 
     private void Awake() {
@@ -30,6 +31,7 @@ public class PauseAndShowMenu : MonoBehaviour {
     private void Start() {
         worldLight = GameEventHandler.Instance.WorldLighting.GetComponent<Light>();
         initialLighting = worldLight.intensity;
+        initialBGColor = Camera.main.GetComponent<Camera>().backgroundColor;
         parentScreen = GameObject.Find("Screens");
 
         GetComponent<Canvas>().enabled = false;
@@ -49,6 +51,8 @@ public class PauseAndShowMenu : MonoBehaviour {
             AudioListener.pause = true;
 
             worldLight.intensity = 0f;
+            worldLight.color = new Color(0,0,0);
+            Camera.main.GetComponent<Camera>().backgroundColor = new Color(0, 0, 0);
 
             GetComponent<Canvas>().enabled = true;
         } else {
@@ -56,6 +60,7 @@ public class PauseAndShowMenu : MonoBehaviour {
             AudioListener.pause = false;
 
             worldLight.intensity = initialLighting;
+            Camera.main.GetComponent<Camera>().backgroundColor = initialBGColor;
 
             GetComponent<Canvas>().enabled = false;
         }

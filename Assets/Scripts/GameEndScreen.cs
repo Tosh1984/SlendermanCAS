@@ -66,8 +66,6 @@ public class GameEndScreen : MonoBehaviour
         subtitle.text = "";
         GetComponent<Canvas>().enabled = true;
         parentScreen.transform.rotation = Camera.main.transform.rotation;
-
-        //UnglitchCamera();
     }
 
     private void GameLost() {
@@ -75,16 +73,13 @@ public class GameEndScreen : MonoBehaviour
         StartCoroutine(WorldLightFadeToBlack());
 
         Time.timeScale = 0;
-        //AudioListener.pause = true;
 
         title.text = "";
-        subtitle.text = "Pages: " + GameEventHandler.Instance.pagesCollected + "/" + GameEventHandler.Instance.pagesToCollect + " pages";
+        subtitle.text = "Collected: " + GameEventHandler.Instance.pagesCollected + "/" + GameEventHandler.Instance.pagesToCollect + " pages";
         GetComponent<Canvas>().enabled = true;
         parentScreen.transform.rotation = Camera.main.transform.rotation;
 
         videoPlayer.enabled = true;
-
-        //UnglitchCamera();
     }
 
     IEnumerator WorldLightFadeToBlack(float fadeDuration = 3f) {
@@ -98,12 +93,4 @@ public class GameEndScreen : MonoBehaviour
             yield return null;
         }
     }
-
-    //private void UnglitchCamera() {
-    //    Kino.AnalogGlitch glitch = Camera.main.GetComponent<Kino.AnalogGlitch>();
-    //    glitch.scanLineJitter = 0;
-    //    glitch.colorDrift = 0;
-    //    glitch.horizontalShake = 0;
-    //    glitch.verticalJump = 0;
-    //}
 }
