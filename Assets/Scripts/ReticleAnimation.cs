@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Animates the reticle under Player.
+/// </summary>
 public class ReticleAnimation : MonoBehaviour {
     Animator anim;
     XRCardboardController cardboardController;

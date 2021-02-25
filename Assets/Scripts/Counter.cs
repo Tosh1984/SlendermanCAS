@@ -4,8 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// editable variables:
-/// - fade in and out time
+/// This script triggers the fade in/out of the player's page counter.
+/// Subscriptions:
+/// - onGotCollectable
+/// - onGamePaused
+/// - onGameWon
+/// - onGameLost
 /// </summary>
 public class Counter : MonoBehaviour
 {
