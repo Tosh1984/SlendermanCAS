@@ -13,6 +13,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 /// - onGotCollectable
 /// - onPlayerViewEntered
 /// - onNotPlayerViewEntered
+/// - onGameLost
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
@@ -60,7 +61,7 @@ public class PlayerController : MonoBehaviour
             if (PauseAndShowMenu.Instance.isPaused) { return; }
 
             // MARK: Pauseable actions below
-            CheckGazeOnSlenderman();
+            CheckOnSlenderman();
 
             if (cardboardController.IsGettingCollectable()) {
                 PlayerCollectPage();
@@ -132,7 +133,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void CheckGazeOnSlenderman() {
+    private void CheckOnSlenderman() {
         if (gameManager.slenderman == null) { return; }
 
         Transform slenderman = gameManager.slenderman.transform;
@@ -141,8 +142,16 @@ public class PlayerController : MonoBehaviour
         float distance = Vector3.Distance(slenderman.position, player.position);
         float angle = Vector3.Angle(mainCamera.transform.forward, slenderman.position - player.position);
 
-        if (distance < viewDistance && angle < viewAngle) {
-            RaycastHit hit;
+        RaycastHit hit;
+        if (distance <= gameManager.bumpingSlenderDistance) {
+            if (Physics.Raycast(player.position,
+                                slenderman.position - player.position,
+                                out hit) &&
+                (hit.transform.name == slenderman.name)) {
+                // EVENT: onGameLost
+                GameEventManager.InvokeGameLost();
+            }
+        } else if (distance < viewDistance && angle < viewAngle) {
             if (Physics.Raycast(player.position,
                                 slenderman.position - player.position,
                                 out hit,

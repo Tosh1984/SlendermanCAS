@@ -8,6 +8,7 @@ using UnityEngine;
 /// Subscriptions:
 /// - onGettingCollectable
 /// - onPlayerViewEntered
+/// - onNotPlayerViewEntered
 /// Broadcasts:
 /// - onGameWon
 /// - onGameLost
@@ -19,7 +20,8 @@ public class GameEventHandler : MonoBehaviour
     public int pagesCollected = 0;
     public int pagesToCollect = 8;
     public float maxTimeGazingSlender = 5f;
-    
+    public float bumpingSlenderDistance = 3f;
+
     // for difficulty settings
     public bool isTimed = false;
     public float gameTimer = 600; // 10 minutes default
@@ -48,38 +50,37 @@ public class GameEventHandler : MonoBehaviour
     private void OnEnable() {
         GameEventManager.onGettingCollectable += PageCollected;
         GameEventManager.onPlayerViewEntered += GazingSlenderman;
+        GameEventManager.onNotPlayerViewEntered += NotGazingSlenderman;
+        GameEventManager.onGameWon += GameEnded;
+        GameEventManager.onGameLost += GameEnded;
     }
-
-    private void Start() {  }
 
     private void Update() {
 
         if (!isGameEnded) {
             // EVENT: onGameWon
             if (pagesCollected == pagesToCollect) {
-                isGameEnded = true;
                 GameEventManager.InvokeGameWon();
             }
 
             // EVENT: onGameLost
             if (timeGazedSlender >= maxTimeGazingSlender) {
-                isGameEnded = true;
                 GameEventManager.InvokeGameLost();
             } else if (isTimed) {
                 if (timeElapsed >= gameTimer) {
-                    isGameEnded = true;
                     GameEventManager.InvokeGameLost();
                 }
                 timeElapsed += Time.deltaTime;
             }
         }
-
-        
     }
 
     private void OnDisable() {
         GameEventManager.onGettingCollectable -= PageCollected;
         GameEventManager.onPlayerViewEntered -= GazingSlenderman;
+        GameEventManager.onNotPlayerViewEntered -= NotGazingSlenderman;
+        GameEventManager.onGameWon -= GameEnded;
+        GameEventManager.onGameLost -= GameEnded;
     }
 
     private void PageCollected() {
@@ -90,5 +91,13 @@ public class GameEventHandler : MonoBehaviour
         if (!PauseAndShowMenu.Instance.isPaused) {
             timeGazedSlender += Time.deltaTime;
         }
+    }
+
+    private void NotGazingSlenderman() {
+        timeGazedSlender = 0;
+    }
+
+    private void GameEnded() {
+        isGameEnded = true;
     }
 }
