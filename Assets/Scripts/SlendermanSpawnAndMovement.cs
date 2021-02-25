@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Defines the spawning behavior of slenderman
+/// Subscriptions:
+/// - onGotCollectable
+/// - onPlayerViewEntered
+/// - onNotPlayerViewEntered
+/// </summary>
 public class SlendermanSpawnAndMovement : MonoBehaviour {
 
     public float spawningTime = 8f;

@@ -4,6 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
+/// <summary>
+/// This script defines the player inputs and some keymappings. It relies on
+/// the XRCardboardController class for VR Cardboard support.
+/// Broadcasts:
+/// - onFlashlightToggled
+/// - onGettingCollectable
+/// - onGotCollectable
+/// - onPlayerViewEntered
+/// - onNotPlayerViewEntered
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     public float walkSpeed = 5f;
@@ -45,24 +55,31 @@ public class PlayerController : MonoBehaviour
 
         PlayerMovement();
 
-        if (PauseAndShowMenu.Instance.isPaused) { return; }
+        if (!gameManager.isGameEnded) {
 
-        // MARK: Pauseable actions below
-        CheckGazeOnSlenderman();
+            if (PauseAndShowMenu.Instance.isPaused) { return; }
 
-        if (cardboardController.IsGettingCollectable()) {
-            PlayerCollectPage();
-        }
+            // MARK: Pauseable actions below
+            CheckGazeOnSlenderman();
 
-        // EVENT: onFlashlightToggled
-        if (Input.GetKeyDown(KeyCode.F)) {
-            GameEventManager.InvokeFlashlightToggled();
+            if (cardboardController.IsGettingCollectable()) {
+                PlayerCollectPage();
+            }
+
+            // EVENT: onFlashlightToggled
+            if (Input.GetKeyDown(KeyCode.F)) {
+                GameEventManager.InvokeFlashlightToggled();
+            }
         }
     }
 
     private void PlayerMovement() {
 #if UNITY_EDITOR
+<<<<<<< HEAD
         float maxAngle = 175f;
+=======
+        float maxAngle = 180f;
+>>>>>>> 1e21ac5bae32275be6a9f510e91681187b96963b
         float mouseX = (Input.mousePosition.x / Screen.width) - 0.5f;
         float mouseY = (Input.mousePosition.y / Screen.height) - 0.5f;
         
