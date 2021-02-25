@@ -75,11 +75,7 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerMovement() {
 #if UNITY_EDITOR
-<<<<<<< HEAD
-        float maxAngle = 175f;
-=======
         float maxAngle = 180f;
->>>>>>> 1e21ac5bae32275be6a9f510e91681187b96963b
         float mouseX = (Input.mousePosition.x / Screen.width) - 0.5f;
         float mouseY = (Input.mousePosition.y / Screen.height) - 0.5f;
         
