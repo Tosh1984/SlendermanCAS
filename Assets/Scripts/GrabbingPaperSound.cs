@@ -1,6 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles and plays the audio for grabbing paper.
+/// Subscriptions:
+/// - onGotCollectable
+/// </summary>
 public class GrabbingPaperSound : MonoBehaviour
 {
     [Range(0.0f, 1.0f)]

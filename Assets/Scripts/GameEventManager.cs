@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This script defines all events for the game.
+/// </summary>
 public class GameEventManager : MonoBehaviour
 {
     // Game events

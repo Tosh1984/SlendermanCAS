@@ -4,6 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
+/// <summary>
+/// This script defines the player inputs and some keymappings. It relies on
+/// the XRCardboardController class for VR Cardboard support.
+/// Broadcasts:
+/// - onFlashlightToggled
+/// - onGettingCollectable
+/// - onGotCollectable
+/// - onPlayerViewEntered
+/// - onNotPlayerViewEntered
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     public float walkSpeed = 5f;
@@ -65,7 +75,7 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerMovement() {
 #if UNITY_EDITOR
-        float maxAngle = 85f;
+        float maxAngle = 180f;
         float mouseX = (Input.mousePosition.x / Screen.width) - 0.5f;
         float mouseY = (Input.mousePosition.y / Screen.height) - 0.5f;
         

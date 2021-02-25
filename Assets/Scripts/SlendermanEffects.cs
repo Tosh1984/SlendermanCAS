@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles and plays the glitch effect with audio when gazing slenderman.
+/// Subscriptions:
+/// - onPlayerViewEntered
+/// - onNotPlayerViewEntered
+/// </summary>
 public class SlendermanEffects : MonoBehaviour
 {
     [SerializeField] private AudioClip audioNear;
@@ -16,6 +22,8 @@ public class SlendermanEffects : MonoBehaviour
     private void OnEnable() {
         GameEventManager.onPlayerViewEntered += SlendermanGazed;
         GameEventManager.onNotPlayerViewEntered += SlendermanNotGazed;
+        GameEventManager.onGameWon += Unglitch;
+        GameEventManager.onGameLost += Unglitch;
     }
 
     private void Start()
@@ -38,6 +46,8 @@ public class SlendermanEffects : MonoBehaviour
     private void OnDisable() {
         GameEventManager.onPlayerViewEntered -= SlendermanGazed;
         GameEventManager.onNotPlayerViewEntered -= SlendermanNotGazed;
+        GameEventManager.onGameWon -= Unglitch;
+        GameEventManager.onGameLost -= Unglitch;
     }
 
     private void SlendermanGazed() {
@@ -55,5 +65,9 @@ public class SlendermanEffects : MonoBehaviour
         if (Random.value > 0.5f) {
             playerAudioSource.PlayOneShot(audioNear, 1f);
         }
+    }
+
+    private void Unglitch() {
+        anim.SetTrigger("GameEnd");
     }
 }

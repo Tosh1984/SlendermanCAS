@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A static instance for pausing the game.
+/// Broadcasts:
+/// - onGamePaused
+/// </summary>
 public class PauseAndShowMenu : MonoBehaviour {
 
     public static PauseAndShowMenu Instance { get; private set; }

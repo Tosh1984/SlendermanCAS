@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// This script manages and tracks the game events, including...
-/// - 
-/// Note: this is not for managing player inputs/triggers. See PlayerController.
+/// Manages and tracks the game events.
+/// Note: this is not for managing player inputs/triggers. See PlayerController.cs
+/// Subscriptions:
+/// - onGettingCollectable
+/// - onPlayerViewEntered
+/// Broadcasts:
+/// - onGameWon
+/// - onGameLost
 /// </summary>
 public class GameEventHandler : MonoBehaviour
 {
@@ -17,7 +22,7 @@ public class GameEventHandler : MonoBehaviour
     
     // for difficulty settings
     public bool isTimed = false;
-    public float gameTimer = 1800; // 30 minutes
+    public float gameTimer = 600; // 10 minutes default
     public float timeElapsed;
 
     public GameObject slenderman;
@@ -26,9 +31,6 @@ public class GameEventHandler : MonoBehaviour
 
     [HideInInspector]
     public bool isGameEnded = false;
-
-    //public get for isGameEnded
-    //    private set for isGameEnded
 
     private float timeGazedSlender = 0f;
 
