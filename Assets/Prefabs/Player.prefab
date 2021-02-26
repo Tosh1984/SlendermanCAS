@@ -1186,6 +1186,10 @@ MonoBehaviour:
   viewDistance: 10
   viewAngle: 25
   reachDistance: 2.5
+  footstepAudioSource: {fileID: 0}
+  footstepSound: {fileID: 0}
+  footstepVolume: 0.5
+  footstepDistance: 3
   doesMovementFollowCamera: 0
   gravity: 9.8
 --- !u!114 &1939351640533916289

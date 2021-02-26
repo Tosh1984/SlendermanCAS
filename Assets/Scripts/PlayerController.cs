@@ -25,6 +25,11 @@ public class PlayerController : MonoBehaviour
     public float viewAngle = 25f;
     public float reachDistance = 2.5f;
 
+    public AudioSource footstepAudioSource;
+    public AudioClip footstepSound;
+    public float footstepVolume = 0.5f;
+    public float footstepDistance = 3f;
+
     public bool doesMovementFollowCamera = false;
     [SerializeField] private float gravity = 9.8f;
 
@@ -35,6 +40,8 @@ public class PlayerController : MonoBehaviour
 
     private float tempAllowedRunningSeconds;
     private float elapsed = 0f;
+
+    private float distanceTravelled = 0f;
 
     private void Start()
     {
@@ -101,6 +108,14 @@ public class PlayerController : MonoBehaviour
         Vector3 velocity = direction * (IsRunning() ? runSpeed : walkSpeed);
         velocity.y -= gravity;
         controller.Move(velocity * Time.deltaTime);
+
+        velocity.y = 0f;
+        distanceTravelled += (velocity * Time.deltaTime).magnitude;
+
+        if (distanceTravelled > footstepDistance) {
+            footstepAudioSource.PlayOneShot(footstepSound, footstepVolume);
+            distanceTravelled = 0f;
+        }
     }
 
     private void PlayerCollectPage() {
