@@ -1,10 +1,24 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
 guid: f8f4817e5350b6346b891cd32ffd8f9a
 =======
 guid: dcfdf6e970badf04b8e5f0589af8402b
 >>>>>>> 42f9f9f30608f810e47274e0cac0963fe1e06421
+=======
+guid: dcfdf6e970badf04b8e5f0589af8402b
+>>>>>>> 0577be5cafaec8817c06bb4c758f1dd77565050b
 NativeFormatImporter:
+=======
+<<<<<<< HEAD:Assets/ProBuilder Data.meta
+guid: 0581778455fbff9498ed2830934a0be1
+folderAsset: yes
+DefaultImporter:
+=======
+guid: f8f4817e5350b6346b891cd32ffd8f9a
+NativeFormatImporter:
+>>>>>>> a849ed254ca68feefeae633c811d2647a3b42f92:Assets/New Terrain 1.asset.meta
+>>>>>>> a849ed254ca68feefeae633c811d2647a3b42f92
   externalObjects: {}
   mainObjectFileID: 0
   userData: 

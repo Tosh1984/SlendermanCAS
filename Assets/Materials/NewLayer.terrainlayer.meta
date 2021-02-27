@@ -1,5 +1,6 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:Assets/Materials/NewLayer.terrainlayer.meta
 guid: 15d54d2d17b090046bc0aae9c1fa5746
 =======
@@ -8,6 +9,12 @@ guid: d3f1eb1cfad54c748b3240e35ddd1397
 =======
 guid: d9b3bcd111ce8af4c8641c0b7c02931c
 >>>>>>> 42f9f9f30608f810e47274e0cac0963fe1e06421
+=======
+guid: d9b3bcd111ce8af4c8641c0b7c02931c
+=======
+guid: 15d54d2d17b090046bc0aae9c1fa5746
+>>>>>>> a849ed254ca68feefeae633c811d2647a3b42f92
+>>>>>>> 0577be5cafaec8817c06bb4c758f1dd77565050b
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0

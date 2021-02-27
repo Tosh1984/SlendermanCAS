@@ -1,12 +1,22 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD:Assets/Scenes/somethingSensible.meta
 guid: 67dda8d080ff858428c6f4c44992118a
 =======
 guid: 0581778455fbff9498ed2830934a0be1
 >>>>>>> 42f9f9f30608f810e47274e0cac0963fe1e06421:Assets/ProBuilder Data.meta
+=======
+<<<<<<< HEAD:Assets/ProBuilder Data.meta
+guid: 0581778455fbff9498ed2830934a0be1
+>>>>>>> 0577be5cafaec8817c06bb4c758f1dd77565050b
 folderAsset: yes
 DefaultImporter:
+=======
+guid: f8f4817e5350b6346b891cd32ffd8f9a
+NativeFormatImporter:
+>>>>>>> a849ed254ca68feefeae633c811d2647a3b42f92:Assets/New Terrain 1.asset.meta
   externalObjects: {}
+  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

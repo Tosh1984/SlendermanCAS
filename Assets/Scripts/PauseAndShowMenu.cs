@@ -42,16 +42,18 @@ public class PauseAndShowMenu : MonoBehaviour {
 
         // angle Screen canvas to where camera is facing when invoked
         parentScreen.transform.rotation = Camera.main.transform.rotation;
+        parentScreen.transform.position = Camera.main.transform.position + (Camera.main.transform.forward.normalized * 0.5f);
 
         // EVENT: onGamePaused
         GameEventManager.InvokeGamePaused();
+
+        Debug.Log("PAUSING");
 
         if (isPaused) {
             Time.timeScale = 0;
             AudioListener.pause = true;
 
             worldLight.intensity = 0f;
-            worldLight.color = new Color(0,0,0);
             Camera.main.GetComponent<Camera>().backgroundColor = new Color(0, 0, 0);
 
             GetComponent<Canvas>().enabled = true;
