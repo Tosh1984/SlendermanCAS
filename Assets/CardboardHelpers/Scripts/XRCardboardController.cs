@@ -85,7 +85,7 @@ public class XRCardboardController : MonoBehaviour
 
     public void OnClick()
     {
-        //Debug.Log("**** in OnClick");
+        Debug.Log("**** in OnClick");
         OnTriggerPressed.Invoke();
     }
 

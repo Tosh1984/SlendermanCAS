@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 // cardboard ui input hack 
 // use XR Interaction Toolkit Interactor to detect pointer enter/exit (hover)
-// add this script to a Button UI element to handle clicks. 
+// add this script to a Button UI element to handle clicks.
+// (Already added by checking make buttons clickable in XRCardboardController)
 // requires theres also a XRCardboardController in the scene
 public class CardboardButtonClickable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 //ISelectHandler, IPointerClickHandler, 
@@ -35,6 +36,7 @@ public class CardboardButtonClickable : MonoBehaviour, IPointerEnterHandler, IPo
 
     private void OnClick()
     {
+        Debug.Log("*** Invoking OnClick");
         _button.onClick.Invoke();
     }
 

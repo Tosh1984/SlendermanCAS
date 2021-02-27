@@ -59,7 +59,7 @@ public class GameEventHandler : MonoBehaviour
 
         if (!isGameEnded) {
             // EVENT: onGameWon
-            if (pagesCollected == pagesToCollect) {
+            if (pagesCollected >= pagesToCollect) {
                 GameEventManager.InvokeGameWon();
             }
 

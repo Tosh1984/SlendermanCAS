@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     public float viewAngle = 25f;
     public float reachDistance = 2.5f;
 
-    public AudioSource footstepAudioSource;
     public AudioClip footstepSound;
     public float footstepVolume = 0.5f;
     public float footstepDistance = 3f;
@@ -37,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private XRCardboardController cardboardController;
     private GameEventHandler gameManager;
+    private AudioSource footstepAudioSource;
 
     private float tempAllowedRunningSeconds;
     private float elapsed = 0f;
@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
         cardboardController = XRCardboardController.Instance;
         cardboardController.maxInteractionDistance = reachDistance;
         gameManager = GameEventHandler.Instance;
+        footstepAudioSource = GetComponent<AudioSource>();
 
         tempAllowedRunningSeconds = allowedRunningSeconds;
     }

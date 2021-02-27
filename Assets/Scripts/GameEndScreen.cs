@@ -30,8 +30,8 @@ public class GameEndScreen : MonoBehaviour
     private void Start()
     {
         GetComponent<Canvas>().enabled = false;
-        title = transform.GetChild(0).GetComponent<Text>();
-        subtitle = transform.GetChild(1).GetComponent<Text>();
+        title = transform.GetChild(0).GetChild(0).GetComponent<Text>();
+        subtitle = transform.GetChild(0).GetChild(1).GetComponent<Text>();
         worldLight = GameEventHandler.Instance.WorldLighting.GetComponent<Light>();
         parentScreen = GameObject.Find("Screens");
         slendermanLoseScreen = GameObject.Find("SlendermanLoseScreen");
@@ -42,6 +42,7 @@ public class GameEndScreen : MonoBehaviour
         if (isGameLost) {
             if (videoPlayer.enabled) {
                 parentScreen.transform.rotation = Camera.main.transform.rotation;
+                parentScreen.transform.position = Camera.main.transform.position + (Camera.main.transform.forward.normalized * 0.5f);
             }
             if (videoPlayer.isPaused) {
                 videoPlayer.enabled = false;
@@ -65,7 +66,10 @@ public class GameEndScreen : MonoBehaviour
         title.text = "You escaped";
         subtitle.text = "";
         GetComponent<Canvas>().enabled = true;
+        slendermanLoseScreen.transform.GetChild(0).gameObject.SetActive(false);
+        // angle Screen canvas to where camera is facing when invoked
         parentScreen.transform.rotation = Camera.main.transform.rotation;
+        parentScreen.transform.position = Camera.main.transform.position + (Camera.main.transform.forward.normalized * 0.5f);
     }
 
     private void GameLost() {
@@ -77,7 +81,9 @@ public class GameEndScreen : MonoBehaviour
         title.text = "";
         subtitle.text = "Collected: " + GameEventHandler.Instance.pagesCollected + "/" + GameEventHandler.Instance.pagesToCollect + " pages";
         GetComponent<Canvas>().enabled = true;
+        // angle Screen canvas to where camera is facing when invoked
         parentScreen.transform.rotation = Camera.main.transform.rotation;
+        parentScreen.transform.position = Camera.main.transform.position + (Camera.main.transform.forward.normalized * 0.5f);
 
         videoPlayer.enabled = true;
     }
