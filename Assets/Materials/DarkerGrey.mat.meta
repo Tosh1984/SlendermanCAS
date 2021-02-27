@@ -1,9 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: d3f1eb1cfad54c748b3240e35ddd1397
+=======
 <<<<<<< HEAD:Assets/Materials/DarkerGrey.mat.meta
 guid: d3f1eb1cfad54c748b3240e35ddd1397
 =======
 guid: bf085271bc9f7374697b9ee20e254104
 >>>>>>> a849ed254ca68feefeae633c811d2647a3b42f92:Assets/New Terrain 2.asset.meta
+>>>>>>> 0577be5cafaec8817c06bb4c758f1dd77565050b
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0

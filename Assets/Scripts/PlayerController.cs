@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // EVENT: onGamePaused
-        if (Input.GetKeyDown(KeyCode.Escape) && !gameManager.isGameEnded) {
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("PS4_Options") && !gameManager.isGameEnded) {
             PauseAndShowMenu.Instance.Pause();
         }
 
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // EVENT: onFlashlightToggled
-            if (Input.GetKeyDown(KeyCode.F)) {
+            if (Input.GetKeyDown(KeyCode.F) || Input.GetButtonDown("PS4_Circle")) {
                 GameEventManager.InvokeFlashlightToggled();
             }
         }
@@ -139,9 +139,7 @@ public class PlayerController : MonoBehaviour
 
             return false;
         } else if ((Input.GetKey(KeyCode.LeftShift) ||
-            Input.GetKey(KeyCode.RightShift)) &&
-                (Input.GetButton("Horizontal") ||
-                Input.GetButton("Vertical"))) {
+            Input.GetButton("PS4_X"))) {
             allowedRunningSeconds -= Time.deltaTime;
             return true;
         } else {
