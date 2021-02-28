@@ -35,6 +35,7 @@ public class PauseAndShowMenu : MonoBehaviour {
         parentScreen = GameObject.Find("Screens");
 
         GetComponent<Canvas>().enabled = false;
+        isPaused = false;
     }
 
     public void Pause() {

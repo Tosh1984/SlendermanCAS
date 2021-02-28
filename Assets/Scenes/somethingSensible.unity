@@ -5843,10 +5843,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 3861769467495750301, guid: b25f0fdb1378d492397b76cd60b5e62b,
-        type: 3}
-      propertyPath: maxFogDensity
-      value: 0.1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b25f0fdb1378d492397b76cd60b5e62b, type: 3}

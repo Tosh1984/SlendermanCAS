@@ -83,5 +83,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialFogDensity: 0
-  maxFogDensity: 0.3
+  maxFogDensity: 0.1
   fogUpdateDuration: 5
