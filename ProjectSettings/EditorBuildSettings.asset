@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Normal.unity
     guid: a084fca2577cb4f6fae7d4388e436716
   - enabled: 1
-    path: Assets/Scenes/somethingSensible.unity
+    path: Assets/Scenes/Hard.unity
     guid: 95224566019f1334188b7be54755207f
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: c3e55662c97e9470f8a21aa5d461db80,

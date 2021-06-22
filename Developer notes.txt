@@ -1,0 +1,24 @@
+Dev notes:
+
+
+key map
+                    Keyboard           | Input manager
+                    ============================================
+movement          - WASD/arrows        | Horizontal & Vertical
+jog/run           - shift + (movement) | PS4_X
+interact          - E                  | PS4_Square
+toggle flashlight - F                  | PS4_Circle
+pause             - ESC                | PS4_Options
+
+update notes:
+*
+
+Game events
+// onGamePaused
+// onGameWon
+// onGameLost
+// onGettingCollectable
+// onGotCollectable
+// onFlashlightToggled
+// onPlayerViewEntered
+// onNotPlayerViewEntered
