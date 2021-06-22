@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This script controls the fog effect whenever a player gets a page.
+/// Subscriptions:
+/// - onGettingCollectable
+/// </summary>
 public class Fog : MonoBehaviour
 {
     public float initialFogDensity = 0f;
@@ -21,6 +26,7 @@ public class Fog : MonoBehaviour
     private void Start()
     {
         RenderSettings.fog = true;
+        RenderSettings.fogColor = new Color(0, 0, 0);
         RenderSettings.fogMode = FogMode.ExponentialSquared;
         RenderSettings.fogDensity = initialFogDensity;
 

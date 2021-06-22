@@ -1,6 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Animates the flashlight object under Player.
+/// Subscriptions:
+/// - onFlashlightToggled
+/// - onGamePaused
+/// - onGameWon
+/// - onGameLost
+/// </summary>
 public class FlashlightAnimation : MonoBehaviour
 {
     Animator anim;

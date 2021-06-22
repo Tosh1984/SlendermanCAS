@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles and plays the glitch animation with audio when gazing slenderman.
+/// Subscriptions:
+/// - onPlayerViewEntered
+/// - onNotPlayerViewEntered
+/// - onGameWon
+/// - onGameLost
+/// </summary>
 public class SlendermanEffects : MonoBehaviour
 {
     [SerializeField] private AudioClip audioNear;
@@ -11,15 +19,18 @@ public class SlendermanEffects : MonoBehaviour
     private PlayerController playerController;
     private Transform mainCamera;
     private AudioSource playerAudioSource;
+    private GameEventHandler gameManager;
 
     private void OnEnable() {
         GameEventManager.onPlayerViewEntered += SlendermanGazed;
         GameEventManager.onNotPlayerViewEntered += SlendermanNotGazed;
+        GameEventManager.onGameWon += Unglitch;
+        GameEventManager.onGameLost += Unglitch;
     }
 
     private void Start()
     {
-        GameEventHandler gameManager = GameEventHandler.Instance;
+        gameManager = GameEventHandler.Instance;
 
         playerController = gameManager.player;
 
@@ -30,15 +41,16 @@ public class SlendermanEffects : MonoBehaviour
         GetComponent<AudioSource>().clip = audioStatic;
     }
 
-    private void Update() {  }
+    private void Update() { }
 
     private void OnDisable() {
         GameEventManager.onPlayerViewEntered -= SlendermanGazed;
         GameEventManager.onNotPlayerViewEntered -= SlendermanNotGazed;
+        GameEventManager.onGameWon -= Unglitch;
+        GameEventManager.onGameLost -= Unglitch;
     }
 
     private void SlendermanGazed() {
-
         if (!anim.GetBool("isLooked")) {
             Shock();
         }
@@ -53,5 +65,9 @@ public class SlendermanEffects : MonoBehaviour
         if (Random.value > 0.5f) {
             playerAudioSource.PlayOneShot(audioNear, 1f);
         }
+    }
+
+    private void Unglitch() {
+        anim.SetTrigger("GameEnd");
     }
 }

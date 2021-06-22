@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scenes/Pause Menu.unity.meta
+<<<<<<< HEAD
+guid: 54c32b6e6b4faf345a2c242a4dc1a6ae
+=======
+guid: ddbd904ec171f4e0298bcc5afc4209b3
+>>>>>>> d79d7920fa8ff7d217f6ebfc6bc3b1de31b9ed77
+=======
 guid: 1b75037901b324af0b00b61329cf214f
+>>>>>>> 3fd3422ce39a27d4b6510393e32065211bb69b2b:Assets/Experiments/Unity2018_tutorial/Scenes/EmptyScene.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

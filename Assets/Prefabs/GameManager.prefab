@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3861769466710253573}
   - component: {fileID: 3861769466710253572}
   - component: {fileID: 3861769466710253627}
+  - component: {fileID: 3861769467495750301}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -47,13 +48,14 @@ MonoBehaviour:
   pagesCollected: 0
   pagesToCollect: 8
   maxTimeGazingSlender: 5
+  bumpingSlenderDistance: 3
   isTimed: 1
   gameTimer: 600
   timeElapsed: 0
-  isPageSpawnedRandomly: 0
   slenderman: {fileID: 0}
   player: {fileID: 0}
   WorldLighting: {fileID: 0}
+  isGameEnded: 0
 --- !u!114 &3861769466710253627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,4 +69,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawningTime: 8
-  minSpawningTime: 1
+  minSpawningTime: 5
+--- !u!114 &3861769467495750301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3861769466710253574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0bab1ac447994154945cacf97cc7c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialFogDensity: 0
+  maxFogDensity: 0.1
+  fogUpdateDuration: 5

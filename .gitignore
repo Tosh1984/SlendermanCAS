@@ -59,4 +59,6 @@ sysinfo.txt
 crashlytics-build.properties
 
 # Others
+.DS_Store
 iOS_Project/
+Assets/Plugins/Android/mainTemplate.gradle

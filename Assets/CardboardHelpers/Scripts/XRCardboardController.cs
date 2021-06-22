@@ -85,7 +85,7 @@ public class XRCardboardController : MonoBehaviour
 
     public void OnClick()
     {
-        //Debug.Log("**** in OnClick");
+        Debug.Log("**** in OnClick");
         OnTriggerPressed.Invoke();
     }
 
@@ -146,9 +146,9 @@ public class XRCardboardController : MonoBehaviour
 
     public bool IsTriggerPressed() {
 #if UNITY_EDITOR
-        return Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E);
+        return Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("PS4_Square");
 #else
-            return (Api.IsTriggerPressed || Input.GetMouseButtonDown(0)) || Input.GetKeyDown(KeyCode.E);
+            return (Api.IsTriggerPressed || Input.GetMouseButtonDown(0)) || Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("PS4_Square");
 #endif
     }
 

@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A static instance for pausing the game.
+/// Broadcasts:
+/// - onGamePaused
+/// </summary>
 public class PauseAndShowMenu : MonoBehaviour {
 
     public static PauseAndShowMenu Instance { get; private set; }
@@ -9,6 +14,8 @@ public class PauseAndShowMenu : MonoBehaviour {
 
     Light worldLight;
     float initialLighting;
+    Color initialBGColor;
+    GameObject parentScreen;
 
     private void Awake() {
         if (Instance != null) {
@@ -24,23 +31,31 @@ public class PauseAndShowMenu : MonoBehaviour {
     private void Start() {
         worldLight = GameEventHandler.Instance.WorldLighting.GetComponent<Light>();
         initialLighting = worldLight.intensity;
-        worldLight.intensity = 0f;
+        initialBGColor = Camera.main.GetComponent<Camera>().backgroundColor;
+        parentScreen = GameObject.Find("Screens");
+
         GetComponent<Canvas>().enabled = false;
+        isPaused = false;
     }
 
     public void Pause() {
         isPaused = !isPaused;
 
+        // angle Screen canvas to where camera is facing when invoked
+        parentScreen.transform.rotation = Camera.main.transform.rotation;
+        parentScreen.transform.position = Camera.main.transform.position + (Camera.main.transform.forward.normalized * 0.5f);
+
         // EVENT: onGamePaused
         GameEventManager.InvokeGamePaused();
+
+        Debug.Log("PAUSING");
 
         if (isPaused) {
             Time.timeScale = 0;
             AudioListener.pause = true;
 
             worldLight.intensity = 0f;
-
-            Debug.Log("light: " + worldLight.name + " : " + worldLight.intensity);
+            Camera.main.GetComponent<Camera>().backgroundColor = new Color(0, 0, 0);
 
             GetComponent<Canvas>().enabled = true;
         } else {
@@ -48,6 +63,7 @@ public class PauseAndShowMenu : MonoBehaviour {
             AudioListener.pause = false;
 
             worldLight.intensity = initialLighting;
+            Camera.main.GetComponent<Camera>().backgroundColor = initialBGColor;
 
             GetComponent<Canvas>().enabled = false;
         }
