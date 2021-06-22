@@ -11,3 +11,10 @@ Go to the Assets folder > Scenes folder > open and play Main Menu scene
 
 ## Other sources
 * [XR Cardboard Interactor by linojon](https://github.com/linojon/CardboardInteractor)
+
+## Screenshots
+Normal level in CAS
+![Image of normal game level in CAS](Screenshots/CAS screenshot.png)
+
+Hard level in a forest
+![Image of hard game level in a forest](Screenshots/Forest screenshot.png)
