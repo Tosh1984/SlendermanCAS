@@ -13,8 +13,9 @@ Go to the Assets folder > Scenes folder > open and play Main Menu scene
 * [XR Cardboard Interactor by linojon](https://github.com/linojon/CardboardInteractor)
 
 ## Screenshots
+
 Normal level in CAS
-![Image of normal game level in CAS](Screenshots/CAS screenshot.png)
+![Image of normal game level in CAS](Screenshots/CAS%20screenshot.png?raw=true "Image of normal game level in CAS")
 
 Hard level in a forest
-![Image of hard game level in a forest](Screenshots/Forest screenshot.png)
+![Image of hard game level in a forest](Screenshots/Forest%20screenshot.png?raw=true "Image of hard game level in a forest")
